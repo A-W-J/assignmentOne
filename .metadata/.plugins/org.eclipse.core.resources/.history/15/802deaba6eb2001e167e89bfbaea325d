@@ -1,0 +1,19 @@
+package coreFunctions;
+
+import java.io.IOException;
+
+public class MainClass {
+
+	public static void main(String[] args) throws IOException {
+		String filename = "C:\\Users\\alexw\\Documents\\Ohio State\\Searle Lab\\Projects\\assignmentOne\\spectrum.txt";
+		Spectrum spec = Spectrum.readSpectrum(filename);
+		for(long mass:spec.getMasses()) {
+			System.out.println(mass);			
+		}
+		for(double intensity:spec.getIntensities()) {
+			System.out.println(intensity);
+		}
+
+	}
+
+}

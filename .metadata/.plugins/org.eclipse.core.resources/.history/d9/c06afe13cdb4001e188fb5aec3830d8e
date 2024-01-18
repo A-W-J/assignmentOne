@@ -1,0 +1,28 @@
+package coreFunctions;
+
+public class AnnotatedSpectrum {
+	private final double[] masses;
+	private final String[] mods;
+	private final String[] sequences;
+	
+	public AnnotatedSpectrum(double[] masses, String[] mods, String[] sequences) {
+		super();
+		this.masses = masses;
+		this.mods = mods;
+		this.sequences = sequences;
+		
+	}
+	public double[] getMasses() {
+		return masses;
+	}
+	public String[] getMods() {
+		return mods;
+	}
+	public String[] sequences() {
+		return sequences;
+	}
+	
+	public static AnnotatedSpectrum annotateSpectrum()
+	
+
+}

@@ -1,0 +1,48 @@
+package coreFunctions;
+
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class ModSpectrum{
+	private final double[] masses;
+	private final String[] modifications;
+	private final String[] sequences;
+	
+	public ModSpectrum(double[] masses, String[] modifications, String[] sequences) {
+		super();
+		this.masses = masses;
+		this.modifications = modifications;
+		this.sequences = sequences;
+		
+	}
+	public double[] getMasses() {
+		return masses;
+	}
+	public String[] getModificaitons() {
+		return modifications;
+	}
+	public String[] sequences() {
+		return sequences;
+	}
+	
+	public static ModSpectrum readSpectrum(String filename) throws IOException {
+		//using a string tokenizer, we can leverage previous code
+		String[] lines = SeqArray.readSequences(filename);
+		//then we allocate new arrays equal to the number of lines
+		double[] masses = new double[lines.length];
+		double[] intensities = new double[lines.length];
+		//here, we need to set up a counter
+		int counter = 0;
+		//instead of using a scanner, we use a tokenizer to operate on each string and
+		//parse out the values
+		for(String line:lines) {
+			StringTokenizer st = new StringTokenizer(line);
+			while(st.hasMoreTokens()) {
+				masses[counter] = (double)Double.valueOf(st.nextToken());
+				intensities[counter] = (double)Double.valueOf(st.nextToken());
+				counter = counter + 1;
+			}
+		}
+		return new Spectrum(masses, intensities);
+	}
+}

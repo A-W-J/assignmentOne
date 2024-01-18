@@ -1,0 +1,32 @@
+package coreFunctions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Matches {
+	final double[] matchIdentities;
+	public Matches(double[] matchIdentities) {
+		super();
+		this.matchIdentities = matchIdentities;
+	}
+	public double[] getMatchIdentities() {
+		return matchIdentities;
+	}
+	
+	public static Matches buildMatchObject(double[] uniprotMasses, double[] spectrumMasses) {
+		//we don't know how many matches we will have, so we will start with a dynamic array
+		//List<Long> tempMatchIdentities = new ArrayList<Long>();
+		ArrayList<Double> tempMatchIdentities = new ArrayList<Double>();
+		Arrays.sort(spectrumMasses);
+		for(double uniprotMass:uniprotMasses) {
+			int dummy = Arrays.binarySearch(spectrumMasses, uniprotMass);
+			if(dummy >= 0) {
+				tempMatchIdentities.add(uniprotMass);
+			}
+		}
+		double[] matchIdentities = tempMatchIdentities.toArray();
+		//Long[] matchIdentities = tempMatchIdentities.toArray(new Long[0]);
+		return new Matches(matchIdentities);
+	}
+
+}

@@ -1,0 +1,34 @@
+package coreFunctions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Matches {
+	final double[] matchIdentities;
+	public Matches(double[] matchIdentities) {
+		super();
+		this.matchIdentities = matchIdentities;
+	}
+	public double[] getMatchIdentities() {
+		return matchIdentities;
+	}
+	
+	public static Matches buildMatchObject(long[] acqMasses, long[] preMasses) {
+		//we don't know how many matches we will have, so we will start with a dynamic array
+		//List<Long> tempMatchIdentities = new ArrayList<Long>();
+		ArrayList<Double> tempMatchIdentities = new ArrayList<Double>;
+		int numberOfMatches = 0;
+		Arrays.sort(preMasses);
+		for(long acqMass:acqMasses) {
+			int dummy = Arrays.binarySearch(preMasses, acqMass);
+			if(dummy >= 0) {
+				numberOfMatches = numberOfMatches + 1;
+				tempMatchIdentities.add(acqMass);
+			}
+		}
+		long[] matchIdentities = tempMatchIdentities.toArray();
+		//Long[] matchIdentities = tempMatchIdentities.toArray(new Long[0]);
+		return new Matches(numberOfMatches, matchIdentities);
+	}
+
+}
